@@ -1,0 +1,246 @@
+npx create-react-app <name_app> // sirve para crear una app de react
+npm start//levanta el servidor de desarrollo y corre la app
+npm run build// agrupta la aplicacion en archivos estaticos para produccion
+npm test//corre la app en modo prueba
+Entramos a la carpeta root de nuestra app con 
+cd <name_app>
+luego: npm start
+LIMPIAR EL PROYECTO
+Eliminar App.css
+Eliminar App.js
+Eliminar App.test.js
+Eliminar Index.css
+Eliminar logo.svg
+Eliminar serviceWorker.js
+y el index.js//borramos todo su contenido pero si  borrar el archivo
+
+Se utiliza la puta sintaxis const ya que hace referencia a que no se puede redeclarar la constante ejemplo
+
+const a=7;
+a=8
+
+Daria como resultado un error no se puede redeclarar ni reasignar el valor en cambio si se puede hacer lo siguiente
+
+const user={
+	firstName:Eddy,
+	lastName:Paz
+}
+
+function changeName(user,Gerardo)
+
+const user={
+	firstName:Gerardo,
+	lastName:Paz
+}
+No daria error ya que la constante usuario seguiria guardando 
+un dato con la estructura firsName, lastName lo que cambio fue el valor dentro de ese objeto pero la estructura no cambio
+
+Componente
+Los componentes permiten separa la interfaz del usuario de manera independiente.
+Un elemento es a un componente como un objeto es a una clase
+un elemento es pues una instancia de componente.
+
+Existe componentes de clase y funcionales.
+En los elementos de clases ya que react y react-dom son librerias de javascript tenemos que importarlas 
+
+import React from 'react'
+import exerciseImg from '../images/exercise.png'
+
+luego si creamos un componente con html embedido tenemos que utilizar su metodo render y tiene que retornar el componente como tal si el componente abarca mas de una linea entonces se vuelve un array de elementos por ende utilizamos la sintaxis de array ()
+Ejemplo de componente de clases.
+
+class Card extends React.Component{
+	render(){
+		return (
+			<div className="card mx-auto Fitness-Card">
+				<div className="card-body">
+					<div className="row center">
+						<div className="col-6">
+							<img src={exerciseImg} className="float-right"/>
+						</div>
+						<div className="col-6 Fitness-Card-Info">
+							<h1>Technique Guides</h1>
+							<p>Learn amazing street workout and calisthen</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			)
+	}
+}
+
+Por ultimo para poder utilizar este componente en nuestro proyecto debemos colocar la sentencia export en el mismo archivo donde esta declarado el componente y luego importarlo en el archivo donde se requiera
+export default Card
+En la carpeta src por lo regular se crea una carpeta "components" donde estaran los archivos con extension js
+donde estaran nuestros componentes.
+
+Existen dos formas de agregarle estilos a nuestros componentes, dentro de la carpeta componentes creamos otra carpeta llamada styles, crearemos por cada componente un archivo css con los estilos que se aplicaran a dicho componente
+Nota: dicho archivo hace referencia a imagenes que previamente nos fueron proveidas en los videos si no de lo contrario no funciona.
+
+IMPLEMENTAR BOOTSTRAP EN REACT
+npm i bootstrap
+y en el archivo index.js importamos bootstrap
+import 'bootstrap/dist/css/bootstrap'
+
+Para agregar clases de css en react se utiliza className en lugar de class que es la forma tradicional.
+
+PROPS en componentes
+Para que los componentes sean reutilizables debemos utilizar props las cuales hacen referencia a las propiedades de los componentes que van a ser variables como por ejemplo values en labels titulos y cuerpos en cards etc. etc.
+dichas propiedades se pasan al llamar al componentes es decir con el componente declarado arriba seria algo como
+<Card
+		title="Technique Guides"
+		description="Learn amazing street workout and calisthen"
+		img={exerciseImg}
+		leftColor="#A74CF2"
+		rightColor="#617BFB"
+	/>
+Donde exerciseImg es una variable
+
+y el componente con props ahora seria de la siguiente manera
+class Card extends React.Component{
+	
+	render(){
+		const{title,description,img,leftColor,rightColor}=this.props/*esto es destructuring y sirve para igualar a un array asociativo las propiedades*/
+		return (
+			<div className="card mx-auto Fitness-Card"
+			style={{
+				backgroundImage:`url(${circlesImg}),linear-gradient(to right, ${leftColor}, ${rightColor})`
+			}}>
+				<div className="card-body">
+					<div className="row center">
+						<div className="col-6">
+							<img src={img} className="float-right"/>
+						</div>
+						<div className="col-6 Fitness-Card-Info">
+							<h1>{title}</h1>
+							<p>{description}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			)
+	}
+}
+
+Existen dos tipos de datos en un componente las PROPS y el STATE
+
+prop: son establecidas por el padre y son fijas en toda la vida util del componente.
+
+state: para los datos que van a cambiar debemos utilizar el estado, al igual que las props el estado contiene informacion del componente,sin embargo el tipo de informacion y como se maneja es un tanto distinto, el estado comienza con un valor predeterminado cuando un componente se monta, y luego sufre ciertas mutaciones con el tiempo, esto en su mayoria generadas a partir de eventos del usuario, regularmente cuando el estado de un componente se actualiza este responde haciendo rerender de el mismo.
+
+STATE en Componentes
+PASO 1: Definir un componente de clase
+PASO 2: Crear un constructor en el componente que tendra el parametro props
+PASO 3: declarar la instruccion super(props) dentro del constructor
+PASO 4: igualar el state a un array(pareciera asociativo)
+en dicho array iran los valores variables del componente
+
+Al setear de nuevo un estado el componente se rerenderiza por tanto cambia el valor variable acontinuacion un componente ya con estado y una funcion que cambia su estado pasado los 5 segundos
+
+
+class Card extends React.Component{
+	constructor(props){
+		super(props)
+		this.state={
+			image:add
+		}
+	}
+
+	componentDidMount(){
+		setTimeout(()=>{
+			this.setState({
+				image:exerciseImg
+			})
+		},5000)
+	}
+	render(){
+		const{title,description,img,leftColor,rightColor}=this.props/*esto es destructuring y sirve para igualar a un array asociativo las propiedades*/
+		return (
+			<div className="card mx-auto Fitness-Card"
+			style={{
+				backgroundImage:`url(${circlesImg}),linear-gradient(to right, ${leftColor}, ${rightColor})`
+			}}>
+				<div className="card-body">
+					<div className="row center">
+						<div className="col-6">
+							<img src={this.state.image} className="float-right"/>
+						</div>
+						<div className="col-6 Fitness-Card-Info">
+							<h1>{title}</h1>
+							<p>{description}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			)
+	}
+}
+
+CICLO DE VIDA DE UN COMPONENTE(IDE stackblits esta nota no tiene nada que ver jaja)
+
+El ciclo de vida se puede dividir en diferentes fases.
+En el montado
+actualizacion
+desmontado
+control de errores
+
+Cada metodo tiene un prefijo will y did
+
+
+contructor(props)
+Inicializar el estado del componente
+Enlazar eventos
+Setear variables globales
+
+componentWilMount()// se ejecuta antes de que el componente sea montado
+Modificar el estado
+No realizar llamados a API's
+No realizar suscripcion a eventos
+
+render
+debe ser una funcion pura
+no debe modificar el estado
+
+componentDidMount()//se ejecuta una vez el componente ya se renderizo
+El mejor momento para llamar API's
+Realizar suscripciones a eventos
+Modificar estado
+
+Actualizacion//puede ocurrir multiples veces o tambien ninguna
+componentWillReceiveProps(nextProps)//se ejecuta despues de que el componente recibe nuevas propiedades
+Realizar cambios en los estados basado en las nuevas propiedades
+
+shouldComponentUpdate(nextProps,nextState)//esta funcion se va a ejecutar antes de empezar actualizar un componente
+Validar si queremos renderizar o no el componente
+
+componentWillUpdate(nextProps,nextState)//Este metodo se va a ejecutar una vez el metodo anterior haya devuelto un true
+Realizar cualquier tipo de preparacion Antes de que se actualice la UI
+
+componentDidUpdate(prevProps,prevState)
+Aca es posible interactuar con el dom y cualquier API
+
+componentWillUnmount()//se ejecuta antes de que un componente se desmonte
+Dejar de escuchar eventos
+Desuscribirse de un WebSocket
+Cancelar peticiones HTTP
+
+componenteDidCatch()
+control de errores
+
+COMPONENTES FUNCIONALES
+En lugar de que el componente sea declarado como clase sera declara como funcion
+Ejemplo
+function Welcome(props){
+	return(
+		<div className="container">
+			<div className="Fitness-User-Info">
+				<h1>Hello {props.username}</h1>
+				<p>Let's workout to get someone gains!</p>
+			</div>
+		</div>
+		)
+}
+
+PAGES
+Por lo regular en react vamos a tener paginas que van a tener componentes por lo cual debemos crear una carpeta aparte donde estaran las "pages" y ahora el index no estara llamando los componentes si no mas bien a las paginas y estas a su vez llamaran a los componentes dichas paginas no seran mas que otro componente pero con la sabidad que este componente tendra mas componentes dentro
+es decir cada pagina puede ser un componente de clase o funcional
