@@ -244,3 +244,91 @@ function Welcome(props){
 PAGES
 Por lo regular en react vamos a tener paginas que van a tener componentes por lo cual debemos crear una carpeta aparte donde estaran las "pages" y ahora el index no estara llamando los componentes si no mas bien a las paginas y estas a su vez llamaran a los componentes dichas paginas no seran mas que otro componente pero con la sabidad que este componente tendra mas componentes dentro
 es decir cada pagina puede ser un componente de clase o funcional
+
+REACT ROUTER
+Coleccion de componenetes de navegacion dinamica.
+Se instala la dependencia de router
+npm install react-router-dom --save//instala react router
+otro paso adicional dentro del package json podemos quitar el ^ para que cualquiera que descargue nuestro proyecto 
+siempre va tener la misma version de reacto router "react-router-dom":"^5.0.0"
+
+luego en index.js
+import App from './components/App'//este componenete(funcional) lo vamos a crear luego en la carpeta Components
+Entonces este componente App es el que mandaremos a llamar desde el index.js 
+El componente App llama a su vez a las pages(Componentes) pero este debe importar router ya que este contendra navegabilidad.
+Los componentes Pages llama a otros componentes mas granulares.
+
+La forma declarar rutas con react router es la siguiente
+<BrowserRouter>
+			<Switch>
+			<Route exact path="/exercise" component={Exercises}/>
+			<Route exact path="/exercise/new" component={ExercisesNew}/>
+			<Route component={NotFound}/>
+			</Switch>
+		</BrowserRouter>
+donde component es el componente de tipo page
+y el componente Switch sirve para que cuando no exita una ruta entonces muestre alguna pagina por defecto
+
+
+BABEL
+Es un conjunto de herramientas que son usadas principalmente para convertir javascript moderno a una version que sea compatible con cualquier tipo de navegador.
+
+Este es un componente funcional
+function AddButton(){
+	return(
+		<Link to="/exercise/new">
+        	<img src={buttomImg} className="Fitness-Add" alt="exercise"/>
+    	</Link>
+	)
+}
+
+Este es el mismo componente pero con arrow function
+const AddButton = () => (
+    <Link to="/exercise/new">
+        <img src={buttomImg} className="Fitness-Add" alt="exercise"/>
+    </Link>
+)
+
+Al parecer los componentes funcionales se pueden declarar de la manera arrow function
+Se puede utilizar destructuracion en los componentes declarados de la manera arrow function
+Ejemplo
+Componente funcional
+function ExerciseList(props){
+	return(
+		<div>
+		{
+			props.exercises.map((exercise)=>{
+			return(
+				<Card
+				title={exercise.title}
+				description={exercise.description}
+				img={exercise.img}
+				leftColor={exercise.leftColor}
+				rightColor={exercise.rightColor}
+				)
+								})
+		}
+		</div>
+	)
+}
+
+Componentes arrow function con destructuring
+const ExerciseList = ({exercises}) => (
+		<div>
+		{
+			exercises.map((exercise)=>{
+			return(
+				<Card
+				title={exercise.title}
+				description={exercise.description}
+				img={exercise.img}
+				leftColor={exercise.leftColor}
+				rightColor={exercise.rightColor}
+				/>
+				)
+								})
+		}
+		</div>
+)
+Como se puede observar en vez de enviarle las props se envia entre llaves el destructuring
+me quede en el video 19

@@ -1,6 +1,7 @@
 import React from 'react'
-import Card from '../Components/Card'
+import ExerciseList from '../Components/ExerciseList'
 import Welcome from '../Components/Welcome'
+import AddButton from '../Components/AddButton'
 
 class Exercises extends React.Component{
 constructor(props){
@@ -33,20 +34,10 @@ constructor(props){
 render(){
 	return(<div>
 	<Welcome username="Eddy"/>
-	{
-		this.state.data.map((exercise)=>{
-			return(
-				<Card
-				title={exercise.title}
-				description={exercise.description}
-				img={exercise.img}
-				leftColor={exercise.leftColor}
-				rightColor={exercise.rightColor}
+	<ExerciseList
+		exercises={this.state.data}
 	/>
-				)
-		})
-	}
-	
+	<AddButton/>
 	</div>)
 }
 }

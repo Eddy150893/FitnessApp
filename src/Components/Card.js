@@ -16,7 +16,7 @@ class Card extends React.Component{
 	componentDidMount(){
 		setTimeout(()=>{
 			this.setState({
-				image:exerciseImg
+				image:this.props.img
 			})
 		},5000)
 	}
@@ -30,7 +30,7 @@ class Card extends React.Component{
 				<div className="card-body">
 					<div className="row center">
 						<div className="col-6">
-							<img src={img} className="float-right"/>
+							<img src={this.state.image} className="float-right"/>
 						</div>
 						<div className="col-6 Fitness-Card-Info">
 							<h1>{title}</h1>
