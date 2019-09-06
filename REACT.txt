@@ -422,3 +422,11 @@ asi es como se consume una api primer antes de que se monte se le indica que esp
 luego en la funcion hacemos la llamada a la api 
 y se lo establecemmos al estado especificamente a la data y como ambos 
 se llaman igual no es necesario hacer la igualacion ya que eso seria redundancia
+
+
+UX LOADER DE ERROR
+Spinner
+ingresar a https://projects.lukehaas.me/css-loaders/
+seleccionar el spinner que mas guste
+luego click en view source y este nos proveera del html y css necesarios para implementarlo
+

@@ -20,6 +20,27 @@ class ExerciseNew extends React.Component {
         	
         })
     }
+
+     handleSubmit = async e => {
+        e.preventDefault()//esto hace que no recarge la pagina
+        console.log(this.state)
+        try{
+        	let config = {
+        		method: 'POST',
+        		header:{
+        			'accept':'application/json',
+        			'Content-Type':'applicaciont/json'
+        		},
+        		body: JSON.stringify(this.state.form)
+        	}
+        	let res = await fetch('http://localhost:8000/api/exercises',config)
+        	let json = await res.json()
+        	console.log(json)
+        }catch(error){
+
+        }
+    }
+
     render(){
     	return(
     		<div className="row">
@@ -29,6 +50,7 @@ class ExerciseNew extends React.Component {
     			<div className="col-sm">
     				<ExerciseForm
     				onChange={this.handleChange}
+    				onSubmit={this.handleSubmit}
     				form={this.state.form}
     				/>
     			</div>

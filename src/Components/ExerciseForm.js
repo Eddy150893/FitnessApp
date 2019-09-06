@@ -3,18 +3,14 @@ import React from 'react'
 class ExerciseForm extends React.Component{
 	
 
-    handleSubmit = e => {
-        e.preventDefault()//esto hace que no recarge la pagina
-        console.log(this.state)
-    }
-
+   
    
 	render(){
-		const { onChange,form }=this.props//Recibimos tanto una funcion(manejador) como el estado en objeto form
+		const { onChange,onSubmit,form }=this.props//Recibimos tanto una funcion(manejador) como el estado en objeto form
         return (
             <div className="container">
             <form 
-                onSubmit={this.handleSubmit}
+                onSubmit={onSubmit}
             >
                 <div className="form-group">
                     <input 
