@@ -377,3 +377,48 @@ Cuando desarrollamos aplicaciones en react en ocaciones necesaitamos que varios 
 
 Nota del video 21 al 22 existe un cambio grande donde en el 21 el componente maneja su estado y sus cambios
 sin embargo en el 22 el componente padre es el que maneja lo antes mencionado
+
+Se descargo una api construida con npm y express 
+https://github.com/RpL02/FitnessAPI.git
+existen algunas caracteristicas como lo son que esta se conecta a una mysqlite
+que tiene dos ambientes uno de pruebas y otro de produccion 
+estos se levantan con los comandos
+npm run test
+npm run start
+respectivamente 
+o simplemente npm star para produccion
+en el packge.json estan declarados los script start y test si no funciona la instruccion export cambiarla por SET en ambos casos
+la api se levanta en el puerto 8000
+
+
+dentro del index.js del api se encuentran las siguientes intrucciones
+import routes from './config/routes'
+import cors from 'cors'
+const corsOptions = {
+    origin: '*'
+}
+app.use('/api',cors(corsOptions), routes)
+
+el cors segun lo que entiendo obtiene todos los archivos que se le indique es por ello el asterisco y como se le indico las routes entonces obtiene todas las rutas que estan en la variable routes y les antepone /api
+
+CONSUMIR LA API
+state={
+		data:[]
+	}
+async componentDidMount(){
+        await this.fetchExercises()
+    }
+
+fetchExercises = async () => {
+    let res = await fetch('http://localhost:8000/api/exercises')
+    let data = await res.json()
+    this.setState({
+        data
+    })
+    console.log(data)
+}
+
+asi es como se consume una api primer antes de que se monte se le indica que espere a ejecutar una funcion
+luego en la funcion hacemos la llamada a la api 
+y se lo establecemmos al estado especificamente a la data y como ambos 
+se llaman igual no es necesario hacer la igualacion ya que eso seria redundancia
