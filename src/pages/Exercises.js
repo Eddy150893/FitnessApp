@@ -4,9 +4,8 @@ import Welcome from '../Components/Welcome'
 import AddButton from '../Components/AddButton'
 
 class Exercises extends React.Component{
-constructor(props){
-	super(props)
-	this.state={
+
+	state={
 		data:[{
     "id": 1,
     "title": "Technique Guides",
@@ -30,7 +29,6 @@ constructor(props){
     "rightColor": "#F76B1C"
 	}]
 	}
-}
 render(){
 	return(<div>
 	<Welcome username="Eddy"/>

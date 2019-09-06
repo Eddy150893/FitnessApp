@@ -331,4 +331,49 @@ const ExerciseList = ({exercises}) => (
 		</div>
 )
 Como se puede observar en vez de enviarle las props se envia entre llaves el destructuring
-me quede en el video 19
+
+Regularmente se utiliza un contructor para inicializar el estado de nuestro componente pero podemos optar por algo llamado properti iniatilizer es un feature que contiene el stage 2 de babel
+con esto ya no tenemos que declarar el constructor de la siguiente manera
+constructor(props){
+	super(props);
+	this.state={
+
+	}
+}
+si no que ahora podemos declararlo de la siguiente manera
+es decir el state vendria a convertirse en nuestro contructor
+state={
+	
+}
+
+Por lo regular los componentes en react deben tener keys
+
+Eventos en React
+Existen dos puntos principales
+1. Los reactEvent utilizan camelCase
+2. Los eventos se declaran en al llamar el componente y a estos se les pasa una funcion
+dicha funcion tiene que declararse en el padre del componente o por el contrario si el evento cambia algo del mismo componente este se puede declarar en el mismo componente y por lo regular 
+se les nombra con la palabra handle al principio.
+
+NOTA: al momento de crear un componente que tendra su propio handle en el mismo entonces tenemos que hacer el bind en el contructor del mismo componente, 
+
+constructor(props){
+		super(props)
+		this.handleClick=this.handleClick.bind(this)//esta instruccion quiere decir que la funcion handleClick esta enlazada con nuestro componente
+	}
+	handleClick(){
+		console.log(this);
+	}
+Si por el contrario no quermos usar constructor el handle debe ser declarado como funciona flecha
+handleClick=()=>{
+		console.log(this);
+	}
+
+handleChange: por lo regular se utiliza en los campos de texto, dropdownlist, radio etc
+handleSubmit: es exlusivo se formularios
+
+ELEVAR EL ESTADO 
+Cuando desarrollamos aplicaciones en react en ocaciones necesaitamos que varios de nuestros componentes utilicen la misma informacion, para eso react nos recomienda elevar el estado, sele llama asi por que practicamente lo que hacemos es elevar el estado de un componente al antepasado mas cercano que tengan en comun todos los componentes que estan involucrados en el uso de esta informacion.
+
+Nota del video 21 al 22 existe un cambio grande donde en el 21 el componente maneja su estado y sus cambios
+sin embargo en el 22 el componente padre es el que maneja lo antes mencionado
