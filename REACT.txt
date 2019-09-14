@@ -508,3 +508,9 @@ Encargado de como se van a ver las cosas
 Componentes Container
 Encargados de como funcionaran las cosas
 
+Basicamente es separar en dos una page
+un componente funcional que solo mostrara las cosas 
+y se le pasara como propiedades las funcionalidades
+y un componente de clase que tendra toda la logica
+a implementar y sera el encargado de renderear el componente funcional y a su vez pasarle la logica mediante props
+
