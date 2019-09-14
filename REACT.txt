@@ -514,3 +514,5 @@ y se le pasara como propiedades las funcionalidades
 y un componente de clase que tendra toda la logica
 a implementar y sera el encargado de renderear el componente funcional y a su vez pasarle la logica mediante props
 
+
+Me quede en el video de introducciona hooks
