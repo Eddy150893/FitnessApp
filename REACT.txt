@@ -430,3 +430,81 @@ ingresar a https://projects.lukehaas.me/css-loaders/
 seleccionar el spinner que mas guste
 luego click en view source y este nos proveera del html y css necesarios para implementarlo
 
+Peticion a restApi(GET)
+
+async componentDidMount(){
+        await this.fetchExercises()
+    }
+
+fetchExercises = async () => {
+    try{
+        let res = await fetch('http://localhost:8000/api/exercises')
+        let data = await res.json()
+        this.setState({
+            data,
+            loading:false
+        })
+        
+    } catch(error){
+        this.setState({
+            loading:false,
+            error
+        })
+    }   
+}
+
+Peticion a restApi(POST)
+handleSubmit = async e => {
+        e.preventDefault()//esto hace que no recarge la pagina
+        /*console.log(this.state)*/
+        try{
+        	let config = {
+        		method: 'POST',
+        		headers:{
+        			'accept':'application/json',
+        			'Content-Type':'application/json'
+        		},
+        		body: JSON.stringify(this.state.form)
+        	}
+        	let res = await fetch('http://localhost:8000/api/exercises',config)
+            let json = await res.json()
+        	console.log(json)
+        }catch(error){
+
+        }
+    }
+
+REDIRECCIONES EN REACT
+Esto lo podemos utilizar gracias a react-router
+this.props.history.push('ruta')
+Ejemplo
+this.props.history.push('/exercise')
+
+FRAGMENTS
+
+Por lo regular en el metodo return siempre debe ir retornado como componente padre un solo elemento 
+y por lo regular varios elementos van encapsulados en un solo div pero esto puede romper nuestros estilos css o puede haber algun otro inconveniente 
+Podemos englobar varios componentes sin dañar su css
+con una caracteristica que react provee
+
+Forma estandar
+<React.Fragment>
+Multiples elementos
+</React.Fragment>
+
+Forma no estandar
+<>
+Multiples elementos
+</>
+
+Presentational and Container Components
+Lograr dividir nuestros componentes en dos partes
+una de ellas la parte presentacional
+y otra de ellas la parte container
+
+Componentes presentacionales
+Encargado de como se van a ver las cosas
+
+Componentes Container
+Encargados de como funcionaran las cosas
+

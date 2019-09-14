@@ -1,6 +1,7 @@
 import React from 'react'
 import ExerciseForm from '../Components/ExerciseForm'
 import Card from '../Components/Card'
+import FatalError from './500'
 class ExerciseNew extends React.Component {
 	state={
 		form: {
@@ -9,8 +10,9 @@ class ExerciseNew extends React.Component {
 			img: '',
 			leftColor: '',
 			rightColor: ''
-		}//El estate se inicializa con un objeto pero dicho objeto esta vacio
-
+		},//El estate se inicializa con un objeto pero dicho objeto esta vacio
+        loading:false,
+        error:null
 	}
 	handleChange = e => {
         this.setState({
@@ -23,6 +25,9 @@ class ExerciseNew extends React.Component {
     }
 
      handleSubmit = async e => {
+        this.setState({
+            loading:true
+        })
         e.preventDefault()//esto hace que no recarge la pagina
         /*console.log(this.state)*/
         try{
@@ -36,13 +41,21 @@ class ExerciseNew extends React.Component {
         	}
         	let res = await fetch('http://localhost:8000/api/exercises',config)
             let json = await res.json()
-        	console.log(json)
+        	this.setState({
+                loading:false
+            })
+            this.props.history.push('/exercise')
         }catch(error){
-
+            this.setState({
+                loading:false,
+                error
+            })
         }
     }
 
     render(){
+        if(this.state.error)
+            return <FatalError/>
     	return(
     		<div className="row">
     			<div className="col-sm">
