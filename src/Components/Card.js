@@ -1,12 +1,10 @@
 import React from 'react'
-import add from '../images/add.png'
-import exerciseImg from '../images/exercise.png'
 import circlesImg from '../images/circles.png'
 import './styles/Card.css'
-
+import emptyImg from '../images/empty.png'
 
 class Card extends React.Component{
-	constructor(props){
+	/*constructor(props){
 		super(props)
 		this.state={
 			image:add
@@ -19,7 +17,7 @@ class Card extends React.Component{
 				image:this.props.img
 			})
 		},5000)
-	}
+	}*/
 	render(){
 		const{title,description,img,leftColor,rightColor}=this.props/*esto es destructuring y sirve para igualar a un array asociativo las propiedades*/
 		return (
@@ -30,7 +28,7 @@ class Card extends React.Component{
 				<div className="card-body">
 					<div className="row center">
 						<div className="col-6">
-							<img src={this.state.image} className="float-right"/>
+							<img src={img || emptyImg} className="float-right"/>
 						</div>
 						<div className="col-6 Fitness-Card-Info">
 							<h1>{title}</h1>
