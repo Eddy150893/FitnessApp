@@ -515,4 +515,49 @@ y un componente de clase que tendra toda la logica
 a implementar y sera el encargado de renderear el componente funcional y a su vez pasarle la logica mediante props
 
 
-Me quede en el video de introducciona hooks
+HOOKS
+Son completamente opcionales
+100% compatibles con versiones anteriores
+Para utilizar hooks se debe utilizar un componente funcional
+
+Hook useState
+
+¿Como utilizar los hooks?
+Solo se deben importar
+import React, {useState} from 'react'
+
+const Example = () =>{
+//el primer parametro(count) es una variable y el segundo(setCount) es una funcion
+//useState devuelve dos valores; el valor inicial de la variable y la funcion que se
+//encargara de actualizar dicho valor dicha funcion necesita el valor inicial que se encargar
+//de setearlo
+/*Es decir useState(valor inicial) es una funcion que devuelve una variable y su 
+respectivo metodo para actualizar dicha variable pero este useState necesita primero
+como parametro el valor inicial de la variable 
+por ello declaramos un array para igualar a una variable y a una funcion lo que devuelve
+useState*/
+//variables de estado el siguiente es un array
+	const[count,setCount]=useState(0)
+}
+
+Hook Effect
+import React, {useState,useEffect} from 'react'
+
+Gracias a effect le podemos a decir a REact de que el componente debe hacer algo despues
+de hacer un render; es algo similar al ciclo de vida de un componente
+este efecto se ejecuta despues de cada renderizado y despues de cada update
+
+useEffect(()=>{
+ const fetchExercises = async() => {
+        try {
+            let res = await fetch('http://localhost:8000/api/exercises')
+            let data = await res.json()
+            setData(data);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false)
+            setError(error)
+        }
+    }
+    fetchExercises()
+},[])
