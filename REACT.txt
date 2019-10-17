@@ -561,3 +561,37 @@ useEffect(()=>{
     }
     fetchExercises()
 },[])
+
+Hooks Personalizados
+un hook personalizado es una funcion de javascript que comienza con use y basicamente es reutilizar 
+peticiones http de diferentes componetes es decir si varios componentes necesitan de la misma peticion http
+entonces mejor creamos un hook personalizado que luego inyectaremos a cada componente que lo necesite pero
+esto nos ahorra codigo y peticiones.
+
+1. Creamos una carpeta dentro de nuestro src y la nombramos hooks
+2. creamos un archivo js(no es necesario importar react) donde importamos los hooks necesarios
+import {useState, useEffect } from 'react'
+3. La misma funcion que utilizamos para utilizar los excersise del ejemplo anterior la vamos 
+a convertir en un hook personalizado de la siguiente manera 
+const useFetch = url => {
+    const [data,setData]=useState([]);
+    const [loading,setLoading]=useState(true);
+    const [error,setError]=useState(null);
+
+    useEffect(()=>{
+        const fetchResource = async() => {
+               try {
+                   let res = await fetch(url)
+                   let data = await res.json()
+                   setData(data);
+                   setLoading(false);
+               } catch (error) {
+                   setLoading(false)
+                   setError(error)
+               }
+           }
+           fetchResource()
+       },[url])
+}
+Nota: notese que para pasar parametros en el useEffect se pasan en el array al final [url] 
+en este caso pasamos como parametro la url que tiene el servicio
