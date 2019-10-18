@@ -595,3 +595,6 @@ const useFetch = url => {
 }
 Nota: notese que para pasar parametros en el useEffect se pasan en el array al final [url] 
 en este caso pasamos como parametro la url que tiene el servicio
+
+FIREBASE
+Tiene un servicio de hosting,

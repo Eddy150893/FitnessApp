@@ -11,15 +11,15 @@ class ExerciseNewContainer extends React.Component {
             img: '',
             leftColor: '',
             rightColor: ''
-        },//El estate se inicializa con un objeto pero dicho objeto esta vacio
+        }, //El estate se inicializa con un objeto pero dicho objeto esta vacio
         loading: false,
         error: null
     }
     handleChange = e => {
         this.setState({
             form: {
-                ...this.state.form,//mantiene la informacion de los campos
-                [e.target.name]: e.target.value//le asigna al atributo entre parentesis el valor de dicho atributo en el formulario
+                ...this.state.form, //mantiene la informacion de los campos
+                [e.target.name]: e.target.value //le asigna al atributo entre parentesis el valor de dicho atributo en el formulario
             }
 
         })
@@ -29,8 +29,8 @@ class ExerciseNewContainer extends React.Component {
         this.setState({
             loading: true
         })
-        e.preventDefault()//esto hace que no recarge la pagina
-        /*console.log(this.state)*/
+        e.preventDefault() //esto hace que no recarge la pagina
+            /*console.log(this.state)*/
         try {
             let config = {
                 method: 'POST',
@@ -45,7 +45,7 @@ class ExerciseNewContainer extends React.Component {
             this.setState({
                 loading: false
             })
-            this.props.history.push('/exercise')
+            this.props.history.push('/exercises')
         } catch (error) {
             this.setState({
                 loading: false,
@@ -56,13 +56,13 @@ class ExerciseNewContainer extends React.Component {
 
     render() {
         if (this.state.loading)
-            return <Loading />
-        if (this.state.error)
-            return <FatalError />
-        return <ExerciseNew
-            form={ this.state.form }
-            onChange={ this.handleChange }
-            onSubmit={ this.handleSubmit }
+            return <Loading / >
+                if (this.state.error)
+                    return <FatalError / >
+                        return <ExerciseNew
+        form = { this.state.form }
+        onChange = { this.handleChange }
+        onSubmit = { this.handleSubmit }
         />
     }
 
